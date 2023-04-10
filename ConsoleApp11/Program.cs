@@ -10,24 +10,48 @@ namespace ConsoleApp11
     {
         static void Main(string[] args)
         {
-            var rubles = 100;
-            var dollars = 10;
-            var euro = 3;
+            double coureseDollarToRubbles = 70.5;
+            double coureseEuroToRubbles = 80.3;
+            double courseDollarToEuro = 0.8;
+            Console.WriteLine("Какую валюту вы хотите конвертировать? Введите на выбор: \nдоллар \nрубль \nевро");
+            string currency = Console.ReadLine();
 
-            var courseDollars = 80.5;
-            var courseEuro = 90.32;
-            int whatConvert, count, inConvert;
-
-            Console.WriteLine("Что вы хотите конвертировать? \n1-рубли \n2-доллары \n3-евро");
-            whatConvert = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Сколько?");
-            count = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Во что вы конвертировать? \n1-рубли \n2-доллары \n3-евро");
-            inConvert = Convert.ToInt32(Console.ReadLine());
-        }
-        static int Converter (int whatConvert, int inConvert)
-        {
-            return 
+            switch (currency)
+            {
+                case "доллар":
+                    Console.WriteLine("Ввведите колличество долларов:");
+                    double dollarsAmmount = Convert.ToDouble(Console.ReadLine());
+                    Console.WriteLine("Во что вы хотите конвертировать? \nрубль \nевро");
+                    string convert = Console.ReadLine();
+                    if (convert == "рубль")
+                        Console.Write($"У Вас {dollarsAmmount * coureseDollarToRubbles} рублей. ");
+                    else
+                        Console.Write($"У Вас {dollarsAmmount * courseDollarToEuro} евро. ");
+                    break;
+                case "евро":
+                    Console.WriteLine("Ввведите колличество евро:");
+                    double euroAmmount = Convert.ToDouble(Console.ReadLine());
+                    Console.WriteLine("Во что вы хотите конвертировать? \nрубль \nдоллар");
+                    string convert2 = Console.ReadLine();
+                    if (convert2 == "рубль")
+                        Console.Write($"У Вас {euroAmmount * coureseEuroToRubbles} рублей. ");
+                    else
+                        Console.Write($"У Вас {euroAmmount / courseDollarToEuro} долларов. ");
+                    break;
+                case "рубль":
+                    Console.WriteLine("Ввведите колличество рублей:");
+                    double rublesAmmount = Convert.ToDouble(Console.ReadLine());
+                    Console.WriteLine("Во что вы хотите конвертировать? \nевро \nдоллар");
+                    string convert3 = Console.ReadLine();
+                    if (convert3 == "евро")
+                        Console.Write($"У Вас {rublesAmmount / coureseEuroToRubbles} евро. ");
+                    else
+                        Console.Write($"У Вас {rublesAmmount / coureseDollarToRubbles} долларов. ");
+                    break;
+                default:
+                    Console.WriteLine("Error");
+                    break;
+            }
         }
     }
 }
